@@ -4,9 +4,9 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.domain.Persistable;
-import org.springframework.data.relational.core.mapping.Table;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * @author 陳金昌 Chris Chen
@@ -14,10 +14,10 @@ import org.springframework.data.relational.core.mapping.Table;
  */
 
 @Data
-@Table
+@Entity
 @AllArgsConstructor
-@NoArgsConstructor(access= AccessLevel.PRIVATE, force=true)
-public class Ingredient implements Persistable<String> {
+@NoArgsConstructor(access=AccessLevel.PUBLIC, force=true)
+public class Ingredient {
     @Id
     private final String id;
     private final String name;
@@ -25,10 +25,5 @@ public class Ingredient implements Persistable<String> {
 
     public enum Type {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
-    }
-
-    @Override
-    public boolean isNew() {
-        return false;
     }
 }

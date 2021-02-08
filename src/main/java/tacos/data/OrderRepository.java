@@ -1,7 +1,10 @@
 package tacos.data;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import tacos.bean.TacoOrder;
+
+import java.util.List;
 
 /**
  * @author 陳金昌 Chris Chen
@@ -9,4 +12,10 @@ import tacos.bean.TacoOrder;
  */
 public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
     TacoOrder save(TacoOrder order);
+
+    List<TacoOrder> findByDeliveryZip(String deliveryZip);
+    List<TacoOrder> findByDeliveryNameAndDeliveryCityAllIgnoreCase(String deliveryTo, String deliveryCity);
+    List<TacoOrder> findByDeliveryCityOrderByDeliveryCity(String city);
+    @Query("from TacoOrder as o where o.deliveryCity='Seattle'")
+    List<TacoOrder> readOrdersDeliveredInSeattle();
 }
