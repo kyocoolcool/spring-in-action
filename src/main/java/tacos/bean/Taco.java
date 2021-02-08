@@ -2,6 +2,8 @@
 package tacos.bean;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,7 +15,9 @@ import java.util.List;
  * @version 1.0 2021/2/5 10:21 AM
  */
 @Data
+@Table
 public class Taco {
+    @Id
     private Long id;
 
     private Date createdAt = new Date();
