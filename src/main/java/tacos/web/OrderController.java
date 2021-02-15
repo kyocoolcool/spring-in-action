@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import tacos.bean.Taco;
 import tacos.bean.TacoOrder;
+import tacos.bean.TacoUDRUtils;
 import tacos.data.OrderRepository;
 
 /**
@@ -39,7 +40,7 @@ public class OrderController {
         if (errors.hasErrors()) {
             return "orderForm";
         }
-        order.addTaco(taco);
+        order.addTaco(TacoUDRUtils.toTacoUDT(taco));
         orderRepo.save(order);
         sessionStatus.setComplete();
 
